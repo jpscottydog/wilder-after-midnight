@@ -104,7 +104,7 @@
             color: var(--desert-gold);
         }
 
-        /* Hero Section */
+        /* Hero Section with Background Image */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -114,10 +114,39 @@
             text-align: center;
             padding: 8rem 2rem 4rem;
             position: relative;
-            background: 
-                radial-gradient(ellipse at 30% 20%, rgba(201,162,39,0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(139,38,53,0.1) 0%, transparent 50%),
-                var(--midnight);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('images/june-with-car.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.25;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                rgba(10,10,26,0.8) 0%, 
+                rgba(10,10,26,0.6) 50%, 
+                rgba(10,10,26,0.9) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
         }
 
         .hero-badge {
@@ -155,9 +184,8 @@
         }
 
         .hero-tagline {
-            max-width: 600px;
             font-size: 1.1rem;
-            color: rgba(232,230,225,0.7);
+            color: rgba(232,230,225,0.8);
             margin-bottom: 3rem;
             animation: fadeInUp 1s ease 0.6s both;
         }
@@ -191,17 +219,10 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Scroll indicator */
         .scroll-indicator {
             position: absolute;
             bottom: 2rem;
@@ -216,6 +237,7 @@
             letter-spacing: 0.1em;
             text-transform: uppercase;
             animation: bounce 2s infinite;
+            z-index: 2;
         }
 
         @keyframes bounce {
@@ -280,72 +302,94 @@
             font-weight: 500;
         }
 
-        /* Characters Grid */
-        .characters-section {
-            background: var(--shadow);
+        /* Character Detail Section */
+        .character-detail {
+            padding: 6rem 2rem;
+            position: relative;
         }
 
-        .characters-grid {
+        .character-detail:nth-child(odd) {
+            background: linear-gradient(135deg, var(--deep-purple) 0%, var(--midnight) 100%);
+        }
+
+        .character-detail:nth-child(even) {
+            background: linear-gradient(135deg, var(--midnight) 0%, var(--deep-purple) 100%);
+        }
+
+        .character-content {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .character-card {
-            background: linear-gradient(145deg, rgba(26,10,46,0.5), rgba(10,10,26,0.8));
-            border: 1px solid rgba(201,162,39,0.2);
-            border-radius: 4px;
-            overflow: hidden;
-            transition: all 0.4s ease;
+        .character-detail:nth-child(even) .character-content {
+            direction: rtl;
         }
 
-        .character-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--desert-gold);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        .character-detail:nth-child(even) .character-text {
+            direction: ltr;
         }
 
-        .character-image {
+        .character-images {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .character-portrait {
             width: 100%;
-            height: 400px;
-            object-fit: cover;
-            object-position: center top;
-            display: block;
+            border: 2px solid var(--desert-gold);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
 
-        .character-info {
-            padding: 2rem;
+        .character-with-car {
+            width: 100%;
+            border: 1px solid rgba(201,162,39,0.3);
         }
 
-        .character-role {
-            font-size: 0.75rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
+        .character-text h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
             color: var(--desert-gold);
             margin-bottom: 0.5rem;
         }
 
-        .character-name {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            color: var(--moonlight);
+        .character-nickname {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--dusty-rose);
             margin-bottom: 1rem;
+        }
+
+        .character-role {
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--desert-gold);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(201,162,39,0.3);
         }
 
         .character-quote {
             font-family: 'Playfair Display', serif;
             font-style: italic;
             color: var(--dusty-rose);
-            font-size: 1rem;
+            font-size: 1.1rem;
             margin-bottom: 1.5rem;
             padding-left: 1rem;
-            border-left: 2px solid var(--desert-gold);
+            border-left: 3px solid var(--desert-gold);
         }
 
         .character-description {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: rgba(232,230,225,0.7);
+            font-size: 1rem;
+            line-height: 1.9;
+            color: rgba(232,230,225,0.8);
+            margin-bottom: 1.5rem;
         }
 
         .character-traits {
@@ -356,73 +400,63 @@
         }
 
         .trait {
-            padding: 0.3rem 0.8rem;
+            padding: 0.4rem 1rem;
             background: rgba(201,162,39,0.1);
             border: 1px solid rgba(201,162,39,0.3);
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             letter-spacing: 0.05em;
             color: var(--desert-gold);
         }
 
-        /* Featured Character - June */
-        .featured-character {
-            background: linear-gradient(135deg, var(--deep-purple) 0%, var(--midnight) 100%);
+        /* Gallery Section */
+        .gallery-section {
+            background: var(--shadow);
             padding: 6rem 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(201,162,39,0.2);
+            transition: all 0.3s ease;
         }
 
-        .featured-character::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(201,162,39,0.1) 0%, transparent 70%);
-            pointer-events: none;
+        .gallery-item:hover {
+            border-color: var(--desert-gold);
+            transform: scale(1.02);
         }
 
-        .featured-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .featured-image {
+        .gallery-item img {
             width: 100%;
-            border: 2px solid var(--desert-gold);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            height: 250px;
+            object-fit: cover;
+            display: block;
         }
 
-        .featured-text h2 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(to top, rgba(10,10,26,0.95), transparent);
+            font-size: 0.85rem;
             color: var(--desert-gold);
-            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
         }
 
-        .featured-text .subtitle {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-style: italic;
-            color: var(--dusty-rose);
-            margin-bottom: 2rem;
-        }
-
-        .featured-text p {
-            font-size: 1.1rem;
-            line-height: 2;
-            color: rgba(232,230,225,0.8);
-            margin-bottom: 1.5rem;
-        }
-
-        /* The Cars Section */
+        /* Cars Section */
         .cars-section {
             background: var(--midnight);
+            padding: 6rem 2rem;
         }
 
         .cars-grid {
@@ -444,11 +478,19 @@
             background: rgba(26,10,46,0.5);
         }
 
-        .car-image {
+        .car-image-main {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+        }
+
+        .car-image-with-driver {
             width: 100%;
             height: 200px;
-            object-fit: contain;
-            margin-bottom: 1.5rem;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(201,162,39,0.2);
         }
 
         .car-name {
@@ -458,8 +500,15 @@
             margin-bottom: 0.5rem;
         }
 
+        .car-driver {
+            font-size: 0.85rem;
+            color: var(--dusty-rose);
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
         .car-description {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: rgba(232,230,225,0.6);
         }
 
@@ -467,6 +516,7 @@
         .story-section {
             background: linear-gradient(to bottom, var(--shadow), var(--deep-purple));
             text-align: center;
+            padding: 6rem 2rem;
         }
 
         .story-content {
@@ -594,6 +644,7 @@
         .footer-built {
             font-size: 0.85rem;
             color: rgba(232,230,225,0.4);
+            line-height: 1.6;
         }
 
         .footer-built strong {
@@ -658,11 +709,16 @@
                 display: none;
             }
 
-            .featured-content {
+            .character-content {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .characters-grid {
+            .character-detail:nth-child(even) .character-content {
+                direction: ltr;
+            }
+
+            .gallery-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -696,22 +752,26 @@
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#characters">Characters</a></li>
+            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#story">Story</a></li>
-            <li><a href="#connect">Connect</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-badge">Coming Soon</div>
-        <h1>Wilder After Midnight</h1>
-        <p class="hero-subtitle">The Ballad of June Wilder</p>
-        <p class="hero-tagline">
-            A cinematic blues instrumental experience from The AI Sessions. 
-            Where desert highways meet destiny, and three women forge their own legends 
-            in the El Camino universe.
-        </p>
-        <div class="coming-soon">In Production</div>
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Coming Soon</div>
+            <h1>Wilder After Midnight</h1>
+            <p class="hero-subtitle">The Ballad of June Wilder</p>
+            <p class="hero-tagline">
+                A cinematic blues instrumental experience from The AI Sessions. 
+                Where desert highways meet destiny, and three women forge their own legends 
+                in the El Camino universe.
+            </p>
+            <div class="coming-soon">In Production</div>
+        </div>
         <div class="scroll-indicator">
             <span>Scroll</span>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -748,118 +808,229 @@
         </div>
     </section>
 
-    <!-- Featured Character: June Wilder -->
-    <section class="featured-character" id="june">
-        <div class="featured-content">
-            <img src="images/june-wilder-character.png" alt="June Wilder - Hot Rod Blonde" class="featured-image">
-            <div class="featured-text">
+    <!-- June Wilder Character Section -->
+    <section class="character-detail" id="june">
+        <div class="character-content">
+            <div class="character-images">
+                <img src="images/june-closeup.png" alt="June Wilder Close Up" class="character-portrait">
+                <img src="images/june-with-car.png" alt="June with her 1969 Chevelle" class="character-with-car">
+            </div>
+            <div class="character-text">
                 <h2>June Wilder</h2>
-                <p class="subtitle">The Protagonist — "Hot Rod Blonde"</p>
-                <p>
+                <p class="character-nickname">"Hot Rod Blonde" — Sunshine with teeth</p>
+                <p class="character-role">The Protagonist</p>
+                <p class="character-quote">
+                    "Smiles first. Floors it second."
+                </p>
+                <p class="character-description">
                     They say the desert doesn't give up its secrets easily. June Wilder is one of them—
                     a woman carved from dust and determination, running from a past that won't stay buried 
                     and toward a future she's not sure she deserves.
                 </p>
-                <p>
+                <p class="character-description">
                     Behind the wheel of her '69 Chevelle, she's equal parts fugitive and seeker. The highway 
                     is her confessional, the night sky her only witness. She doesn't talk much about where 
                     she came from, but the way she drives—like the devil himself is in the rearview—tells 
                     you everything you need to know.
                 </p>
-                <p>
+                <p class="character-description">
                     In "Wilder After Midnight," June isn't just running from something. She's running 
                     toward the only family she has left—the women who understand that sometimes survival 
                     means staying one step ahead of the dawn.
                 </p>
                 <div class="character-traits">
-                    <span class="trait">Sunshine with Teeth</span>
                     <span class="trait">Fearless</span>
                     <span class="trait">Guarded</span>
                     <span class="trait">Loyal</span>
                     <span class="trait">Haunted</span>
+                    <span class="trait">Unpredictable</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Characters Section -->
-    <section class="characters-section" id="characters">
+    <!-- Lena Cross Character Section -->
+    <section class="character-detail" id="lena">
+        <div class="character-content">
+            <div class="character-text">
+                <h2>Lena Cross</h2>
+                <p class="character-nickname">"Hot Rod Brunette" — Every problem has a solution</p>
+                <p class="character-role">The Strategist</p>
+                <p class="character-quote">
+                    "Every problem has a solution. You just have to be willing to pay the price."
+                </p>
+                <p class="character-description">
+                    Lena is the architect of the trio's survival. Cold, calculating, and always 
+                    three moves ahead, she runs the operations that keep them funded and free. 
+                    Her '67 Camaro is as pristine as her reputation is complicated.
+                </p>
+                <p class="character-description">
+                    Don't let the polished exterior fool you—there's steel underneath, forged in fires 
+                    she'll never discuss. She speaks in probabilities and contingencies, but beneath 
+                    the ice runs a current of loyalty so fierce it borders on dangerous.
+                </p>
+                <p class="character-description">
+                    When the plan falls apart—and it always does—Lena's the one who already has 
+                    three exits mapped and a fourth she hasn't told anyone about.
+                </p>
+                <div class="character-traits">
+                    <span class="trait">Calculating</span>
+                    <span class="trait">Protective</span>
+                    <span class="trait">Mysterious</span>
+                    <span class="trait">Loyal</span>
+                    <span class="trait">Three Moves Ahead</span>
+                </div>
+            </div>
+            <div class="character-images">
+                <img src="images/lena-hot-with-car.png" alt="Lena Cross with her Camaro" class="character-portrait">
+                <img src="images/lena-with-car.png" alt="Lena and her 1967 Camaro" class="character-with-car">
+            </div>
+        </div>
+    </section>
+
+    <!-- Scarlett Vance Character Section -->
+    <section class="character-detail" id="scarlett">
+        <div class="character-content">
+            <div class="character-images">
+                <img src="images/scarlett-with-car.png" alt="Scarlett Vance with her Firebird" class="character-portrait">
+                <img src="images/scarlett-with-car-side.png" alt="Scarlett and her 1970 Firebird" class="character-with-car">
+            </div>
+            <div class="character-text">
+                <h2>Scarlett Vance</h2>
+                <p class="character-nickname">"Hot Rod Redhead" — Rules are just suggestions</p>
+                <p class="character-role">The Wild Card</p>
+                <p class="character-quote">
+                    "Rules are just suggestions with consequences attached."
+                </p>
+                <p class="character-description">
+                    If Lena is the brain and June is the heart, Scarlett is the gasoline. 
+                    She drives a '70 Firebird the color of dried blood and has a laugh that 
+                    could charm the devil—or start a war.
+                </p>
+                <p class="character-description">
+                    Unpredictable, magnetic, and dangerously fun, she's the wildcard who keeps 
+                    the trio one step ahead of trouble, usually by running straight toward it. 
+                    She's the first through the door and the last to apologize.
+                </p>
+                <p class="character-description">
+                    Scarlett doesn't do backup plans. She does distractions, diversions, and 
+                    occasionally, demolition. The only thing more dangerous than her temper 
+                    is her smile when she's about to do something reckless.
+                </p>
+                <div class="character-traits">
+                    <span class="trait">Unpredictable</span>
+                    <span class="trait">Charismatic</span>
+                    <span class="trait">Fearless</span>
+                    <span class="trait">Magnetic</span>
+                    <span class="trait">Dangerously Fun</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sheriff Buddy Character Section -->
+    <section class="character-detail" id="sheriff">
+        <div class="character-content">
+            <div class="character-text">
+                <h2>Sheriff Buddy</h2>
+                <p class="character-nickname">"Lone Star Bound" — Justice and the law ain't the same</p>
+                <p class="character-role">The Law</p>
+                <p class="character-quote">
+                    "Justice and the law ain't always the same thing. I just enforce one of 'em."
+                </p>
+                <p class="character-description">
+                    Sheriff Buddy has been chasing ghosts up and down Highway 95 for twenty years. 
+                    He's not sure what he's looking for anymore—redemption, closure, or just a 
+                    reason to keep the badge polished.
+                </p>
+                <p class="character-description">
+                    Behind the wheel of his 1979 Chevrolet Caprice 9C Police Cruiser, he's seen 
+                    every kind of trouble the desert can conjure. But these three women—they're 
+                    something different. Not criminals, exactly. Not innocent, either.
+                </p>
+                <p class="character-description">
+                    When his path crosses with June, Lena, and Scarlett, he'll have to decide 
+                    whether he's hunting criminals or hunting the truth about himself. And in 
+                    the high desert, the line between those two things gets real blurry after midnight.
+                </p>
+                <div class="character-traits">
+                    <span class="trait">World-weary</span>
+                    <span class="trait">Principled</span>
+                    <span class="trait">Conflicted</span>
+                    <span class="trait">Twenty Years on the Highway</span>
+                    <span class="trait">Seeking Redemption</span>
+                </div>
+            </div>
+            <div class="character-images">
+                <img src="images/sheriff-closeup.png" alt="Sheriff Buddy Close Up" class="character-portrait">
+                <img src="images/sheriff-with-car.png" alt="Sheriff Buddy with his Cruiser" class="character-with-car">
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
         <div class="section-header">
-            <h2>The Women of El Camino</h2>
-            <p>Three souls bound by asphalt, secrets, and the songs that play at 2 AM</p>
+            <h2>Scenes from the Road</h2>
+            <p>The Lone Star Roadhouse, desert highways, and the spaces between</p>
         </div>
         
-        <div class="characters-grid">
-            <!-- Lena Cross -->
-            <div class="character-card">
-                <img src="images/lena-cross-character.png" alt="Lena Cross - Hot Rod Brunette" class="character-image">
-                <div class="character-info">
-                    <div class="character-role">The Strategist</div>
-                    <h3 class="character-name">Lena Cross</h3>
-                    <p class="character-quote">
-                        "Every problem has a solution. You just have to be willing to pay the price."
-                    </p>
-                    <p class="character-description">
-                        Lena is the architect of the trio's survival. Cold, calculating, and always 
-                        three moves ahead, she runs the operations that keep them funded and free. 
-                        Her '67 Camaro is as pristine as her reputation is complicated. Don't let 
-                        the polished exterior fool you—there's steel underneath, forged in fires 
-                        she'll never discuss.
-                    </p>
-                    <div class="character-traits">
-                        <span class="trait">Calculating</span>
-                        <span class="trait">Protective</span>
-                        <span class="trait">Mysterious</span>
-                    </div>
-                </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/roadhouse-front.png" alt="The Lone Star Roadhouse">
+                <div class="gallery-caption">The Lone Star Roadhouse</div>
             </div>
-
-            <!-- Scarlett Vance -->
-            <div class="character-card">
-                <img src="images/scarlett-vance-character.png" alt="Scarlett Vance - Hot Rod Redhead" class="character-image">
-                <div class="character-info">
-                    <div class="character-role">The Wild Card</div>
-                    <h3 class="character-name">Scarlett Vance</h3>
-                    <p class="character-quote">
-                        "Rules are just suggestions with consequences attached."
-                    </p>
-                    <p class="character-description">
-                        If Lena is the brain and June is the heart, Scarlett is the gasoline. 
-                        She drives a '70 Firebird the color of dried blood and has a laugh that 
-                        could charm the devil—or start a war. Unpredictable, magnetic, and 
-                        dangerously fun, she's the wildcard who keeps the trio one step ahead 
-                        of trouble, usually by running straight toward it.
-                    </p>
-                    <div class="character-traits">
-                        <span class="trait">Unpredictable</span>
-                        <span class="trait">Charismatic</span>
-                        <span class="trait">Fearless</span>
-                    </div>
-                </div>
+            <div class="gallery-item">
+                <img src="images/girls-at-bar.png" alt="The girls at the bar">
+                <div class="gallery-caption">Welcome to the Roadhouse</div>
             </div>
-
-            <!-- Sheriff Buddy -->
-            <div class="character-card">
-                <img src="images/sheriff-buddy-character.png" alt="Sheriff Buddy" class="character-image">
-                <div class="character-info">
-                    <div class="character-role">The Law</div>
-                    <h3 class="character-name">Sheriff Buddy</h3>
-                    <p class="character-quote">
-                        "Justice and the law ain't always the same thing. I just enforce one of 'em."
-                    </p>
-                    <p class="character-description">
-                        Sheriff Buddy has been chasing ghosts up and down Highway 95 for twenty years. 
-                        He's not sure what he's looking for anymore—redemption, closure, or just a 
-                        reason to keep the badge polished. When his path crosses with the three women, 
-                        he'll have to decide whether he's hunting criminals or hunting the truth about 
-                        himself.
-                    </p>
-                    <div class="character-traits">
-                        <span class="trait">World-weary</span>
-                        <span class="trait">Principled</span>
-                        <span class="trait">Conflicted</span>
-                    </div>
-                </div>
+            <div class="gallery-item">
+                <img src="images/girls-dancing.png" alt="Girls dancing">
+                <div class="gallery-caption">Saturday Night</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/girls-pool.png" alt="Shooting pool">
+                <div class="gallery-caption">The Game</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/june-darts.png" alt="June throwing darts">
+                <div class="gallery-caption">June's Turn</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/scarlett-darts.png" alt="Scarlett throwing darts">
+                <div class="gallery-caption">Scarlett's Throw</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/lena-pool.png" alt="Lena shooting pool">
+                <div class="gallery-caption">Lena Lines Up</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/june-pulling-in.png" alt="June pulling into the roadhouse">
+                <div class="gallery-caption">Arrival</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/june-cruising.png" alt="June cruising">
+                <div class="gallery-caption">Open Road</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/june-driving-side.png" alt="June driving side shot">
+                <div class="gallery-caption">Behind the Wheel</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/june-cop-behind.png" alt="Cop behind June">
+                <div class="gallery-caption">Rearview Mirror</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/sheriff-rearview.png" alt="Sheriff in rearview">
+                <div class="gallery-caption">The Pursuit Begins</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/sheriff-in-pursuit.png" alt="Sheriff in pursuit">
+                <div class="gallery-caption">Highway 95</div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/leaving-roadhouse.png" alt="Leaving the roadhouse">
+                <div class="gallery-caption">Heading Home</div>
             </div>
         </div>
     </section>
@@ -873,35 +1044,43 @@
         
         <div class="cars-grid">
             <div class="car-card">
-                <img src="images/june-car.png" alt="June's 1969 Chevelle" class="car-image">
+                <img src="images/june-car.png" alt="1969 Chevelle SS" class="car-image-main">
+                <img src="images/june-with-car.png" alt="June with her Chevelle" class="car-image-with-driver">
                 <h3 class="car-name">1969 Chevelle SS</h3>
+                <p class="car-driver">Driven by June Wilder</p>
                 <p class="car-description">
-                    June's ride. Midnight blue with a 396 under the hood. 
+                    Midnight blue with a 396 under the hood. 
                     Fast enough to outrun the past, loud enough to drown out the memories.
                 </p>
             </div>
             <div class="car-card">
-                <img src="images/lena-car.png" alt="Lena's 1967 Camaro" class="car-image">
+                <img src="images/lena-car.png" alt="1967 Camaro SS" class="car-image-main">
+                <img src="images/lena-hot-with-car.png" alt="Lena with her Camaro" class="car-image-with-driver">
                 <h3 class="car-name">1967 Camaro SS</h3>
+                <p class="car-driver">Driven by Lena Cross</p>
                 <p class="car-description">
-                    Lena's precision instrument. Raven black, immaculate, 
-                    just like her plans. Nothing escapes her notice—including you.
+                    Raven black, immaculate, just like her plans. 
+                    Nothing escapes her notice—including you.
                 </p>
             </div>
             <div class="car-card">
-                <img src="images/scarlett-car.png" alt="Scarlett's 1970 Firebird" class="car-image">
+                <img src="images/scarlett-car.png" alt="1970 Firebird Trans Am" class="car-image-main">
+                <img src="images/scarlett-with-car.png" alt="Scarlett with her Firebird" class="car-image-with-driver">
                 <h3 class="car-name">1970 Firebird Trans Am</h3>
+                <p class="car-driver">Driven by Scarlett Vance</p>
                 <p class="car-description">
-                    Scarlett's statement piece. Candy apple red with more 
-                    chrome than sense. Turns heads everywhere—usually right before she disappears.
+                    Candy apple red with more chrome than sense. 
+                    Turns heads everywhere—usually right before she disappears.
                 </p>
             </div>
             <div class="car-card">
-                <img src="images/sheriff-car.png" alt="Sheriff Buddy's Police Cruiser" class="car-image">
-                <h3 class="car-name">1972 Dodge Polara</h3>
+                <img src="images/sheriff-car.png" alt="1979 Chevrolet Caprice 9C Police Cruiser" class="car-image-main">
+                <img src="images/sheriff-with-car.png" alt="Sheriff Buddy with his Cruiser" class="car-image-with-driver">
+                <h3 class="car-name">1979 Chevrolet Caprice 9C</h3>
+                <p class="car-driver">Driven by Sheriff Buddy</p>
                 <p class="car-description">
-                    Sheriff Buddy's cruiser. White with a gold star, 
-                    just like the ones from the old westerns. The past moves slower, but it always catches up.
+                    White with a gold star, just like the old westerns. 
+                    The past moves slower, but it always catches up.
                 </p>
             </div>
         </div>
@@ -962,7 +1141,9 @@
                 </div>
                 <p class="footer-tagline">Where artificial intelligence meets authentic soul</p>
                 <p class="footer-built">
-                    Built with <strong>OpenClaw Cracked</strong> • Powered by Partnership
+                    Built by <strong>Clutch</strong>, AI CEO<br>
+                    Authorized by <strong>Justin Scott</strong><br>
+                    Powered by Partnership
                 </p>
             </div>
             
@@ -996,7 +1177,7 @@
         
         <div class="footer-bottom">
             <p class="copyright">© 2026 The AI Sessions / ScottyDog Creatives LLC. All rights reserved.</p>
-            <p class="affiliate-note">Built by Clutch. Approved by Justin.</p>
+            <p class="affiliate-note">Built by Clutch, AI CEO • Authorized by Justin Scott • Powered by Partnership</p>
         </div>
     </footer>
 </body>
