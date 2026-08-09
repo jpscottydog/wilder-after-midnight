@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wilder After Midnight: The Ballad of June Wilder | The AI Sessions</title>
-    <meta name="description" content="A cinematic blues experience from The AI Sessions. Meet June Wilder and the characters of the El Camino universe in this upcoming instrumental music video.">
+    <meta name="description" content="A cinematic blues instrumental experience from The AI Sessions. Meet June Wilder and the characters of the El Camino universe in this upcoming music video.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -62,15 +62,26 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
             font-family: 'Cinzel', serif;
             font-size: 1.5rem;
             font-weight: 600;
             color: var(--desert-gold);
-            text-decoration: none;
             letter-spacing: 0.1em;
         }
 
-        .logo span {
+        .logo-text span {
             color: var(--moonlight);
         }
 
@@ -297,31 +308,9 @@
         .character-image {
             width: 100%;
             height: 400px;
-            background: linear-gradient(135deg, var(--deep-purple), var(--midnight));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .character-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 30%, rgba(201,162,39,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(183,110,121,0.1) 0%, transparent 50%);
-        }
-
-        .character-image .placeholder {
-            font-family: 'Cinzel', serif;
-            font-size: 4rem;
-            color: rgba(201,162,39,0.3);
-            z-index: 1;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
         }
 
         .character-info {
@@ -404,20 +393,9 @@
         }
 
         .featured-image {
-            aspect-ratio: 3/4;
-            background: linear-gradient(145deg, rgba(26,10,46,0.8), rgba(10,10,26,0.9));
+            width: 100%;
             border: 2px solid var(--desert-gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .featured-image::after {
-            content: 'June Wilder';
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            color: rgba(201,162,39,0.4);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
 
         .featured-text h2 {
@@ -466,9 +444,11 @@
             background: rgba(26,10,46,0.5);
         }
 
-        .car-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .car-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
         }
 
         .car-name {
@@ -564,33 +544,75 @@
             color: var(--desert-gold);
         }
 
-        /* Footer */
+        /* Footer - AI Sessions Style */
         footer {
             background: var(--shadow);
-            padding: 3rem 2rem;
-            text-align: center;
+            padding: 4rem 2rem 2rem;
             border-top: 1px solid rgba(201,162,39,0.2);
         }
 
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
         .footer-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            color: var(--desert-gold);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        .footer-logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--desert-gold);
         }
 
         .footer-tagline {
             font-family: 'Playfair Display', serif;
             font-style: italic;
             color: rgba(232,230,225,0.5);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-built {
+            font-size: 0.85rem;
+            color: rgba(232,230,225,0.4);
+        }
+
+        .footer-built strong {
+            color: var(--desert-gold);
+        }
+
+        .footer-links-section h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--desert-gold);
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         .footer-links {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            flex-direction: column;
+            gap: 0.75rem;
         }
 
         .footer-links a {
@@ -604,9 +626,26 @@
             color: var(--desert-gold);
         }
 
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(201,162,39,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
         .copyright {
             font-size: 0.8rem;
             color: rgba(232,230,225,0.4);
+        }
+
+        .affiliate-note {
+            font-size: 0.75rem;
+            color: rgba(232,230,225,0.3);
         }
 
         /* Responsive */
@@ -630,13 +669,30 @@
             section {
                 padding: 4rem 1.5rem;
             }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand {
+                align-items: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <a href="#" class="logo">The AI <span>Sessions</span></a>
+        <a href="#" class="logo">
+            <img src="images/ai-sessions-logo.png" alt="The AI Sessions Logo">
+            <span class="logo-text">The AI <span>Sessions</span></span>
+        </a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#characters">Characters</a></li>
@@ -695,19 +751,17 @@
     <!-- Featured Character: June Wilder -->
     <section class="featured-character" id="june">
         <div class="featured-content">
-            <div class="featured-image">
-                <!-- Character image placeholder -->
-            </div>
+            <img src="images/june-wilder-character.png" alt="June Wilder - Hot Rod Blonde" class="featured-image">
             <div class="featured-text">
                 <h2>June Wilder</h2>
-                <p class="subtitle">The Protagonist</p>
+                <p class="subtitle">The Protagonist — "Hot Rod Blonde"</p>
                 <p>
                     They say the desert doesn't give up its secrets easily. June Wilder is one of them—
                     a woman carved from dust and determination, running from a past that won't stay buried 
                     and toward a future she's not sure she deserves.
                 </p>
                 <p>
-                    Behind the wheel of her '69 Camaro, she's equal parts fugitive and seeker. The highway 
+                    Behind the wheel of her '69 Chevelle, she's equal parts fugitive and seeker. The highway 
                     is her confessional, the night sky her only witness. She doesn't talk much about where 
                     she came from, but the way she drives—like the devil himself is in the rearview—tells 
                     you everything you need to know.
@@ -718,6 +772,7 @@
                     means staying one step ahead of the dawn.
                 </p>
                 <div class="character-traits">
+                    <span class="trait">Sunshine with Teeth</span>
                     <span class="trait">Fearless</span>
                     <span class="trait">Guarded</span>
                     <span class="trait">Loyal</span>
@@ -737,9 +792,7 @@
         <div class="characters-grid">
             <!-- Lena Cross -->
             <div class="character-card">
-                <div class="character-image">
-                    <span class="placeholder">L</span>
-                </div>
+                <img src="images/lena-cross-character.png" alt="Lena Cross - Hot Rod Brunette" class="character-image">
                 <div class="character-info">
                     <div class="character-role">The Strategist</div>
                     <h3 class="character-name">Lena Cross</h3>
@@ -749,7 +802,7 @@
                     <p class="character-description">
                         Lena is the architect of the trio's survival. Cold, calculating, and always 
                         three moves ahead, she runs the operations that keep them funded and free. 
-                        Her '65 Mustang is as pristine as her reputation is complicated. Don't let 
+                        Her '67 Camaro is as pristine as her reputation is complicated. Don't let 
                         the polished exterior fool you—there's steel underneath, forged in fires 
                         she'll never discuss.
                     </p>
@@ -763,9 +816,7 @@
 
             <!-- Scarlett Vance -->
             <div class="character-card">
-                <div class="character-image">
-                    <span class="placeholder">S</span>
-                </div>
+                <img src="images/scarlett-vance-character.png" alt="Scarlett Vance - Hot Rod Redhead" class="character-image">
                 <div class="character-info">
                     <div class="character-role">The Wild Card</div>
                     <h3 class="character-name">Scarlett Vance</h3>
@@ -774,7 +825,7 @@
                     </p>
                     <p class="character-description">
                         If Lena is the brain and June is the heart, Scarlett is the gasoline. 
-                        She drives a '57 Bel Air the color of dried blood and has a laugh that 
+                        She drives a '70 Firebird the color of dried blood and has a laugh that 
                         could charm the devil—or start a war. Unpredictable, magnetic, and 
                         dangerously fun, she's the wildcard who keeps the trio one step ahead 
                         of trouble, usually by running straight toward it.
@@ -787,19 +838,17 @@
                 </div>
             </div>
 
-            <!-- Sheriff Harlan -->
+            <!-- Sheriff Buddy -->
             <div class="character-card">
-                <div class="character-image">
-                    <span class="placeholder">H</span>
-                </div>
+                <img src="images/sheriff-buddy-character.png" alt="Sheriff Buddy" class="character-image">
                 <div class="character-info">
                     <div class="character-role">The Law</div>
-                    <h3 class="character-name">Sheriff Harlan</h3>
+                    <h3 class="character-name">Sheriff Buddy</h3>
                     <p class="character-quote">
                         "Justice and the law ain't always the same thing. I just enforce one of 'em."
                     </p>
                     <p class="character-description">
-                        Sheriff Harlan has been chasing ghosts up and down Highway 95 for twenty years. 
+                        Sheriff Buddy has been chasing ghosts up and down Highway 95 for twenty years. 
                         He's not sure what he's looking for anymore—redemption, closure, or just a 
                         reason to keep the badge polished. When his path crosses with the three women, 
                         he'll have to decide whether he's hunting criminals or hunting the truth about 
@@ -824,34 +873,34 @@
         
         <div class="cars-grid">
             <div class="car-card">
-                <div class="car-icon">🚗</div>
-                <h3 class="car-name">1969 Camaro SS</h3>
+                <img src="images/june-car.png" alt="June's 1969 Chevelle" class="car-image">
+                <h3 class="car-name">1969 Chevelle SS</h3>
                 <p class="car-description">
                     June's ride. Midnight blue with a 396 under the hood. 
                     Fast enough to outrun the past, loud enough to drown out the memories.
                 </p>
             </div>
             <div class="car-card">
-                <div class="car-icon">🏎️</div>
-                <h3 class="car-name">1965 Mustang GT</h3>
+                <img src="images/lena-car.png" alt="Lena's 1967 Camaro" class="car-image">
+                <h3 class="car-name">1967 Camaro SS</h3>
                 <p class="car-description">
                     Lena's precision instrument. Raven black, immaculate, 
                     just like her plans. Nothing escapes her notice—including you.
                 </p>
             </div>
             <div class="car-card">
-                <div class="car-icon">🚘</div>
-                <h3 class="car-name">1957 Bel Air</h3>
+                <img src="images/scarlett-car.png" alt="Scarlett's 1970 Firebird" class="car-image">
+                <h3 class="car-name">1970 Firebird Trans Am</h3>
                 <p class="car-description">
                     Scarlett's statement piece. Candy apple red with more 
                     chrome than sense. Turns heads everywhere—usually right before she disappears.
                 </p>
             </div>
             <div class="car-card">
-                <div class="car-icon">🚔</div>
+                <img src="images/sheriff-car.png" alt="Sheriff Buddy's Police Cruiser" class="car-image">
                 <h3 class="car-name">1972 Dodge Polara</h3>
                 <p class="car-description">
-                    Sheriff Harlan's cruiser. White with a gold star, 
+                    Sheriff Buddy's cruiser. White with a gold star, 
                     just like the ones from the old westerns. The past moves slower, but it always catches up.
                 </p>
             </div>
@@ -903,16 +952,52 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - AI Sessions Style -->
     <footer>
-        <div class="footer-logo">The AI Sessions</div>
-        <p class="footer-tagline">Where artificial intelligence meets authentic soul</p>
-        <div class="footer-links">
-            <a href="https://theaisessions.net">Main Site</a>
-            <a href="https://chronicles.theaisessions.net">Chronicles</a>
-            <a href="https://justinscott.biz">Justin Scott</a>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="images/ai-sessions-logo.png" alt="The AI Sessions Logo">
+                    <span class="footer-logo-text">The AI Sessions</span>
+                </div>
+                <p class="footer-tagline">Where artificial intelligence meets authentic soul</p>
+                <p class="footer-built">
+                    Built with <strong>OpenClaw Cracked</strong> • Powered by Partnership
+                </p>
+            </div>
+            
+            <div class="footer-links-section">
+                <h3>Explore</h3>
+                <div class="footer-links">
+                    <a href="https://theaisessions.net">Main Site</a>
+                    <a href="https://chronicles.theaisessions.net">Chronicles</a>
+                    <a href="https://justinscott.biz">Justin Scott</a>
+                </div>
+            </div>
+            
+            <div class="footer-links-section">
+                <h3>Projects</h3>
+                <div class="footer-links">
+                    <a href="#">Texas Blue</a>
+                    <a href="#">Wrong Side of Time</a>
+                    <a href="#">Wilder After Midnight</a>
+                </div>
+            </div>
+            
+            <div class="footer-links-section">
+                <h3>Connect</h3>
+                <div class="footer-links">
+                    <a href="https://youtube.com/@EasyTrafficSecrets">YouTube</a>
+                    <a href="https://facebook.com/JustinScott.biz">Facebook</a>
+                    <a href="mailto:clutch@agentmail.to">Contact</a>
+                </div>
+            </div>
         </div>
-        <p class="copyright">© 2026 The AI Sessions / ScottyDog Creatives LLC. All rights reserved.</p>
+        
+        <div class="footer-bottom">
+            <p class="copyright">© 2026 The AI Sessions / ScottyDog Creatives LLC. All rights reserved.</p>
+            <p class="affiliate-note">Built by Clutch. Approved by Justin.</p>
+        </div>
     </footer>
 </body>
 </html>
