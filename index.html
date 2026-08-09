@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wilder After Midnight: The Ballad of June Wilder | The AI Sessions</title>
+    <meta name="description" content="A cinematic blues experience from The AI Sessions. Meet June Wilder and the characters of the El Camino universe in this upcoming instrumental music video.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --midnight: #0a0a1a;
+            --deep-purple: #1a0a2e;
+            --desert-gold: #c9a227;
+            --dusty-rose: #b76e79;
+            --moonlight: #e8e6e1;
+            --shadow: #050508;
+            --accent-red: #8b2635;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--midnight);
+            color: var(--moonlight);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(10,10,26,0.95), transparent);
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--desert-gold);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+
+        .logo span {
+            color: var(--moonlight);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--moonlight);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: var(--desert-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(201,162,39,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(139,38,53,0.1) 0%, transparent 50%),
+                var(--midnight);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--desert-gold);
+            color: var(--desert-gold);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--moonlight) 0%, var(--desert-gold) 50%, var(--dusty-rose) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-style: italic;
+            color: var(--dusty-rose);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-tagline {
+            max-width: 600px;
+            font-size: 1.1rem;
+            color: rgba(232,230,225,0.7);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .coming-soon {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: rgba(201,162,39,0.1);
+            border: 1px solid var(--desert-gold);
+            color: var(--desert-gold);
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .coming-soon::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--desert-gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(232,230,225,0.5);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Section styling */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--desert-gold);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: rgba(232,230,225,0.6);
+        }
+
+        /* About The AI Sessions */
+        .about-section {
+            background: linear-gradient(to bottom, var(--midnight), var(--deep-purple));
+            padding: 6rem 2rem;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--desert-gold);
+            margin-bottom: 2rem;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: rgba(232,230,225,0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content .highlight {
+            color: var(--desert-gold);
+            font-weight: 500;
+        }
+
+        /* Characters Grid */
+        .characters-section {
+            background: var(--shadow);
+        }
+
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .character-card {
+            background: linear-gradient(145deg, rgba(26,10,46,0.5), rgba(10,10,26,0.8));
+            border: 1px solid rgba(201,162,39,0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .character-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--desert-gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .character-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--deep-purple), var(--midnight));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .character-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(201,162,39,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(183,110,121,0.1) 0%, transparent 50%);
+        }
+
+        .character-image .placeholder {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            color: rgba(201,162,39,0.3);
+            z-index: 1;
+        }
+
+        .character-info {
+            padding: 2rem;
+        }
+
+        .character-role {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--desert-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .character-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--moonlight);
+            margin-bottom: 1rem;
+        }
+
+        .character-quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--dusty-rose);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--desert-gold);
+        }
+
+        .character-description {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: rgba(232,230,225,0.7);
+        }
+
+        .character-traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .trait {
+            padding: 0.3rem 0.8rem;
+            background: rgba(201,162,39,0.1);
+            border: 1px solid rgba(201,162,39,0.3);
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: var(--desert-gold);
+        }
+
+        /* Featured Character - June */
+        .featured-character {
+            background: linear-gradient(135deg, var(--deep-purple) 0%, var(--midnight) 100%);
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-character::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201,162,39,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .featured-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .featured-image {
+            aspect-ratio: 3/4;
+            background: linear-gradient(145deg, rgba(26,10,46,0.8), rgba(10,10,26,0.9));
+            border: 2px solid var(--desert-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .featured-image::after {
+            content: 'June Wilder';
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: rgba(201,162,39,0.4);
+        }
+
+        .featured-text h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--desert-gold);
+            margin-bottom: 1rem;
+        }
+
+        .featured-text .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--dusty-rose);
+            margin-bottom: 2rem;
+        }
+
+        .featured-text p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: rgba(232,230,225,0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        /* The Cars Section */
+        .cars-section {
+            background: var(--midnight);
+        }
+
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .car-card {
+            background: linear-gradient(180deg, rgba(26,10,46,0.3), transparent);
+            border: 1px solid rgba(201,162,39,0.15);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .car-card:hover {
+            border-color: var(--desert-gold);
+            background: rgba(26,10,46,0.5);
+        }
+
+        .car-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .car-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--desert-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .car-description {
+            font-size: 0.95rem;
+            color: rgba(232,230,225,0.6);
+        }
+
+        /* Story Section */
+        .story-section {
+            background: linear-gradient(to bottom, var(--shadow), var(--deep-purple));
+            text-align: center;
+        }
+
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .story-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--desert-gold);
+            margin-bottom: 2rem;
+        }
+
+        .story-content p {
+            font-size: 1.15rem;
+            line-height: 2.2;
+            color: rgba(232,230,225,0.8);
+            margin-bottom: 2rem;
+        }
+
+        .story-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--dusty-rose);
+            padding: 2rem;
+            border-top: 1px solid rgba(201,162,39,0.3);
+            border-bottom: 1px solid rgba(201,162,39,0.3);
+            margin: 3rem 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--midnight);
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--moonlight);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            color: rgba(232,230,225,0.7);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--desert-gold);
+            color: var(--midnight);
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 2px solid var(--desert-gold);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--desert-gold);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--shadow);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(201,162,39,0.2);
+        }
+
+        .footer-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--desert-gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-tagline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: rgba(232,230,225,0.5);
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(232,230,225,0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--desert-gold);
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: rgba(232,230,225,0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .featured-content {
+                grid-template-columns: 1fr;
+            }
+
+            .characters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">The AI <span>Sessions</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#characters">Characters</a></li>
+            <li><a href="#story">Story</a></li>
+            <li><a href="#connect">Connect</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">Coming Soon</div>
+        <h1>Wilder After Midnight</h1>
+        <p class="hero-subtitle">The Ballad of June Wilder</p>
+        <p class="hero-tagline">
+            A cinematic blues instrumental experience from The AI Sessions. 
+            Where desert highways meet destiny, and three women forge their own legends 
+            in the El Camino universe.
+        </p>
+        <div class="coming-soon">In Production</div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About The AI Sessions -->
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <h2>The AI Sessions</h2>
+            <p>
+                <span class="highlight">Where artificial intelligence meets authentic soul.</span>
+            </p>
+            <p>
+                The AI Sessions is a creative laboratory pushing the boundaries of what's possible 
+                when human vision collaborates with machine intelligence. We don't just use AI tools—
+                we wield them like instruments, crafting cinematic experiences that blur the line 
+                between digital creation and raw human emotion.
+            </p>
+            <p>
+                Our work spans music videos, visual storytelling, and immersive narratives—all 
+                born from the marriage of blues-rock aesthetics and cutting-edge generative technology. 
+                Every frame is intentional. Every note carries weight. Every story is human at its core, 
+                even when the tools aren't.
+            </p>
+            <p>
+                <span class="highlight">"Wilder After Midnight"</span> represents our most ambitious 
+                project yet—a wordless blues instrumental that lets the visuals and the music do the talking. 
+                No lyrics. No exposition. Just pure cinematic storytelling set to the sound of electric 
+                guitars crying into the desert night.
+            </p>
+        </div>
+    </section>
+
+    <!-- Featured Character: June Wilder -->
+    <section class="featured-character" id="june">
+        <div class="featured-content">
+            <div class="featured-image">
+                <!-- Character image placeholder -->
+            </div>
+            <div class="featured-text">
+                <h2>June Wilder</h2>
+                <p class="subtitle">The Protagonist</p>
+                <p>
+                    They say the desert doesn't give up its secrets easily. June Wilder is one of them—
+                    a woman carved from dust and determination, running from a past that won't stay buried 
+                    and toward a future she's not sure she deserves.
+                </p>
+                <p>
+                    Behind the wheel of her '69 Camaro, she's equal parts fugitive and seeker. The highway 
+                    is her confessional, the night sky her only witness. She doesn't talk much about where 
+                    she came from, but the way she drives—like the devil himself is in the rearview—tells 
+                    you everything you need to know.
+                </p>
+                <p>
+                    In "Wilder After Midnight," June isn't just running from something. She's running 
+                    toward the only family she has left—the women who understand that sometimes survival 
+                    means staying one step ahead of the dawn.
+                </p>
+                <div class="character-traits">
+                    <span class="trait">Fearless</span>
+                    <span class="trait">Guarded</span>
+                    <span class="trait">Loyal</span>
+                    <span class="trait">Haunted</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Characters Section -->
+    <section class="characters-section" id="characters">
+        <div class="section-header">
+            <h2>The Women of El Camino</h2>
+            <p>Three souls bound by asphalt, secrets, and the songs that play at 2 AM</p>
+        </div>
+        
+        <div class="characters-grid">
+            <!-- Lena Cross -->
+            <div class="character-card">
+                <div class="character-image">
+                    <span class="placeholder">L</span>
+                </div>
+                <div class="character-info">
+                    <div class="character-role">The Strategist</div>
+                    <h3 class="character-name">Lena Cross</h3>
+                    <p class="character-quote">
+                        "Every problem has a solution. You just have to be willing to pay the price."
+                    </p>
+                    <p class="character-description">
+                        Lena is the architect of the trio's survival. Cold, calculating, and always 
+                        three moves ahead, she runs the operations that keep them funded and free. 
+                        Her '65 Mustang is as pristine as her reputation is complicated. Don't let 
+                        the polished exterior fool you—there's steel underneath, forged in fires 
+                        she'll never discuss.
+                    </p>
+                    <div class="character-traits">
+                        <span class="trait">Calculating</span>
+                        <span class="trait">Protective</span>
+                        <span class="trait">Mysterious</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scarlett Vance -->
+            <div class="character-card">
+                <div class="character-image">
+                    <span class="placeholder">S</span>
+                </div>
+                <div class="character-info">
+                    <div class="character-role">The Wild Card</div>
+                    <h3 class="character-name">Scarlett Vance</h3>
+                    <p class="character-quote">
+                        "Rules are just suggestions with consequences attached."
+                    </p>
+                    <p class="character-description">
+                        If Lena is the brain and June is the heart, Scarlett is the gasoline. 
+                        She drives a '57 Bel Air the color of dried blood and has a laugh that 
+                        could charm the devil—or start a war. Unpredictable, magnetic, and 
+                        dangerously fun, she's the wildcard who keeps the trio one step ahead 
+                        of trouble, usually by running straight toward it.
+                    </p>
+                    <div class="character-traits">
+                        <span class="trait">Unpredictable</span>
+                        <span class="trait">Charismatic</span>
+                        <span class="trait">Fearless</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sheriff Harlan -->
+            <div class="character-card">
+                <div class="character-image">
+                    <span class="placeholder">H</span>
+                </div>
+                <div class="character-info">
+                    <div class="character-role">The Law</div>
+                    <h3 class="character-name">Sheriff Harlan</h3>
+                    <p class="character-quote">
+                        "Justice and the law ain't always the same thing. I just enforce one of 'em."
+                    </p>
+                    <p class="character-description">
+                        Sheriff Harlan has been chasing ghosts up and down Highway 95 for twenty years. 
+                        He's not sure what he's looking for anymore—redemption, closure, or just a 
+                        reason to keep the badge polished. When his path crosses with the three women, 
+                        he'll have to decide whether he's hunting criminals or hunting the truth about 
+                        himself.
+                    </p>
+                    <div class="character-traits">
+                        <span class="trait">World-weary</span>
+                        <span class="trait">Principled</span>
+                        <span class="trait">Conflicted</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Cars Section -->
+    <section class="cars-section">
+        <div class="section-header">
+            <h2>The Machines</h2>
+            <p>Four wheels, endless highway, no looking back</p>
+        </div>
+        
+        <div class="cars-grid">
+            <div class="car-card">
+                <div class="car-icon">🚗</div>
+                <h3 class="car-name">1969 Camaro SS</h3>
+                <p class="car-description">
+                    June's ride. Midnight blue with a 396 under the hood. 
+                    Fast enough to outrun the past, loud enough to drown out the memories.
+                </p>
+            </div>
+            <div class="car-card">
+                <div class="car-icon">🏎️</div>
+                <h3 class="car-name">1965 Mustang GT</h3>
+                <p class="car-description">
+                    Lena's precision instrument. Raven black, immaculate, 
+                    just like her plans. Nothing escapes her notice—including you.
+                </p>
+            </div>
+            <div class="car-card">
+                <div class="car-icon">🚘</div>
+                <h3 class="car-name">1957 Bel Air</h3>
+                <p class="car-description">
+                    Scarlett's statement piece. Candy apple red with more 
+                    chrome than sense. Turns heads everywhere—usually right before she disappears.
+                </p>
+            </div>
+            <div class="car-card">
+                <div class="car-icon">🚔</div>
+                <h3 class="car-name">1972 Dodge Polara</h3>
+                <p class="car-description">
+                    Sheriff Harlan's cruiser. White with a gold star, 
+                    just like the ones from the old westerns. The past moves slower, but it always catches up.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section" id="story">
+        <div class="story-content">
+            <h2>The Story</h2>
+            <p>
+                Somewhere between Last Chance and No Tomorrow, three women made a pact. 
+                They'd ride together, fight together, and maybe—just maybe—find something 
+                worth stopping for.
+            </p>
+            <p>
+                "Wilder After Midnight" isn't just a music video. It's a visual poem about 
+                escape and belonging, about the families we choose and the ghosts we can't shake. 
+                Set to an original blues instrumental that builds from a whisper to a roar, 
+                the story unfolds across desert highways, neon-lit diners, and the spaces 
+                between streetlights where secrets live.
+            </p>
+            <div class="story-quote">
+                "The desert doesn't care who you were. It only knows who you become when 
+                no one's watching."
+            </div>
+            <p>
+                No dialogue. No exposition. Just the wail of electric guitars, the hum of 
+                V8 engines, and the silent understanding between women who've learned that 
+                trust is the only currency that matters.
+            </p>
+            <p>
+                This is The AI Sessions at our most cinematic. Every frame generated through 
+                a marriage of human vision and machine capability. Every note played by hands 
+                that understand blues isn't about perfection—it's about truth.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="connect">
+        <div class="cta-content">
+            <h2>Join the Journey</h2>
+            <p>
+                "Wilder After Midnight: The Ballad of June Wilder" is coming soon. 
+                Be the first to know when the desert opens its doors.
+            </p>
+            <a href="https://theaisessions.net" class="cta-button">Visit The AI Sessions</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">The AI Sessions</div>
+        <p class="footer-tagline">Where artificial intelligence meets authentic soul</p>
+        <div class="footer-links">
+            <a href="https://theaisessions.net">Main Site</a>
+            <a href="https://chronicles.theaisessions.net">Chronicles</a>
+            <a href="https://justinscott.biz">Justin Scott</a>
+        </div>
+        <p class="copyright">© 2026 The AI Sessions / ScottyDog Creatives LLC. All rights reserved.</p>
+    </footer>
+</body>
+</html>
