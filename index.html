@@ -478,6 +478,27 @@
             background: rgba(26,10,46,0.5);
         }
 
+        .car-card.wide {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .car-card.wide img {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(201,162,39,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .car-card.wide {
+                grid-column: span 1;
+            }
+        }
+
         .car-image-main {
             width: 100%;
             height: 180px;
@@ -1075,12 +1096,21 @@
             </div>
             <div class="car-card">
                 <img src="images/sheriff-car.png" alt="1979 Chevrolet Caprice 9C Police Cruiser" class="car-image-main">
-                <img src="images/sheriff-with-car.png" alt="Sheriff Buddy with his Cruiser" class="car-image-with-driver">
+                <img src="images/sheriff-new-with-car.jpg" alt="Sheriff Buddy with his Cruiser" class="car-image-with-driver">
                 <h3 class="car-name">1979 Chevrolet Caprice 9C</h3>
                 <p class="car-driver">Driven by Sheriff Buddy</p>
                 <p class="car-description">
-                    White with a gold star, just like the old westerns. 
+                    White with a gold star, just like the old westerns.
                     The past moves slower, but it always catches up.
+                </p>
+            </div>
+            <div class="car-card wide">
+                <img src="images/roadhouse-all-cars.jpg" alt="All three cars at the Lone Star Roadhouse">
+                <h3 class="car-name">The Lone Star Roadhouse</h3>
+                <p class="car-driver">Where the machines rest and the stories begin</p>
+                <p class="car-description">
+                    Four wheels, three women, one sheriff, and a bar that doesn't ask questions.
+                    Every legend needs a place to start—and a place to end up when the road gets too long.
                 </p>
             </div>
         </div>
